@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { passportCall } from '../middlewares/passportCall.middleware.js'; // Ajusta la ruta a tu middleware de auth
+import { passportCall } from '../middlewares/passportCustom.middleware.js'; // Ajusta la ruta a tu middleware de auth
 import {
   createTicket,
   getMyTickets,

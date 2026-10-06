@@ -7,8 +7,7 @@ import {
   createEvent, 
   updateEvent, 
   getEventById,
-  cancelEvent,
-  registerToEvent
+  cancelEvent
 } from '../controllers/event.controller.js';
 
 const router = Router();

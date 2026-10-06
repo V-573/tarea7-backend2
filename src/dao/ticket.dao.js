@@ -1,4 +1,5 @@
 import { ticketModel } from '../models/ticket.model.js';
+import mongoose from 'mongoose';
 
 class TicketDAO {
   async create(ticketData) {
@@ -18,11 +19,34 @@ class TicketDAO {
   }
 
   // Cuenta la suma total de 'quantity' en tickets activos (confirmed y pending)
+  // async countOccupiedSlots(eventId) {
+  //   const result = await ticketModel.aggregate([
+  //     {
+  //       $match: {
+  //         event: eventId,
+  //         status: { $in: ['confirmed', 'pending'] }
+  //       }
+  //     },
+  //     {
+  //       $group: {
+  //         _id: null,
+  //         totalReserved: { $sum: '$quantity' }
+  //       }
+  //     }
+  //   ]);
+
+  //   return result.length > 0 ? result[0].totalReserved : 0;
+  // }
+
+  // Cuenta la suma total de 'quantity' en tickets activos (confirmed y pending)
   async countOccupiedSlots(eventId) {
+    // 2. Convertir eventId a ObjectId explícitamente
+    const objectId = typeof eventId === 'string' ? new mongoose.Types.ObjectId(eventId) : eventId;
+
     const result = await ticketModel.aggregate([
       {
         $match: {
-          event: eventId,
+          event: objectId, // 3. Usar el ObjectId convertido
           status: { $in: ['confirmed', 'pending'] }
         }
       },
