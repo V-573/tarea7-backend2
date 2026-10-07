@@ -15,6 +15,9 @@ async getAll() {
         return await UserModel.create(userData);
     }
 
+    async getById(id) {
+    return await UserModel.findById(id).select('-password').lean();;
+  }
 
 }
 

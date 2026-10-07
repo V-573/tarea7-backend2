@@ -14,7 +14,11 @@ async createUser(userData){
 return await userDAO.getAll();
   }
 
+async getById(id) {
+    return await userDAO.getById(id);
+  }
 
+  
   async getByEmail(email) {
     // Aquí podrías primero buscar en caché, y si no está, ir al DAO
     return await userDAO.getByEmail(email);

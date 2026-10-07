@@ -2,6 +2,8 @@ import { ticketRepository } from '../repositories/ticket.repository.js';
 import { eventRepository } from '../repositories/event.repository.js';
 import { CustomError } from '../utils/customError.util.js';
 import crypto from 'crypto';
+import { userRepository } from '../repositories/user.repository.js';
+import { sendTicketConfirmationEmail } from '../utils/mailer.util.js';
 
 class TicketService {
   /**
@@ -69,6 +71,25 @@ class TicketService {
       reservationCode,
       status: 'confirmed'
     });
+
+// 8. Enviar correo de confirmación (asíncrono)
+    try {
+      const user = await userRepository.getById(userId); // Obtener datos del usuario si req.user no tiene todo el objeto
+      
+      if (user && user.email) {
+        sendTicketConfirmationEmail({
+          to: user.email,
+          userName: `${user.first_name || ''} ${user.last_name || ''}`.trim() || 'Usuario',
+          eventTitle: event.title,
+          eventDate: event.date,
+          eventLocation: event.location,
+          reservationCode: newTicket.reservationCode,
+          quantity: newTicket.quantity
+        });
+      }
+    } catch (mailErr) {
+      console.error('[TicketService] Error al intentar enviar email de confirmación:', mailErr.message);
+    }
 
     return newTicket;
   }
