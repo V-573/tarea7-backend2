@@ -56,11 +56,11 @@ Variables de Entorno Requeridas (.env)
 # Configuración de Nodemailer / Email Service
 
 
-MAIL_HOST=smtp.gmail.com
-MAIL_PORT=587
-MAIL_USER=tu_correo@gmail.com
-MAIL_PASS=abcdefghijklmnop
-MAIL_FROM="Eventos App <tu_correo@gmail.com>"
+* MAIL_HOST=smtp.gmail.com
+* MAIL_PORT=587
+* MAIL_USER=tu_correo@gmail.com
+* MAIL_PASS=abcdefghijklmnop
+* MAIL_FROM="Eventos App <tu_correo@gmail.com>"
 
 
 
@@ -80,8 +80,8 @@ PORT=8080
 MONGODB_URI=mongodb://localhost:27017/eventos
 
 # Mailer Configuration
-MAIL_HOST=
-MAIL_PORT=
-MAIL_USER=
-MAIL_PASS=
-MAIL_FROM=
+* MAIL_HOST=
+* MAIL_PORT=
+* MAIL_USER=
+* MAIL_PASS=
+* MAIL_FROM=
