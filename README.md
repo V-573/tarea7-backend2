@@ -43,7 +43,7 @@ Validación de Evento Activo: No es posible inscribirse a eventos con estado dra
 | Método | Ruta | Autorización | Descripción |
 | :--- | :--- | :--- | :--- | 
 | POST | /api/events/:eid/tickets | Authenticated | Crea una inscripción para el evento :eid. Body opcional: { "quantity": 1 }. | 
-| GET | /api/tickets/my-tickets | Authenticated | Retorna la lista de tickets del usuario autenticado con el evento poblado (populate). Esta en desarrollo, no se ha implementado aun esta ruta. | 
+| GET | /api/tickets/my-tickets | Authenticated | Retorna la lista de tickets del usuario autenticado con el evento poblado (populate). | 
 | GET | /api/events/:eid/tickets | Organizer / Admin | Obtiene todos los tickets registrados para el evento :eid. | 
 | PATCH | /api/tickets/:tid/cancel | Owner / Admin | Cancela el ticket :tid y libera los cupos en la base de datos. | 
 
